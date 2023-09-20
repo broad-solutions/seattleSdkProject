@@ -1,4 +1,5 @@
 # seattleSdkProject
+<<<<<<< HEAD
 ### seattleSdk 主要功能
 集成webviewApi展示广告相关内容</br>
 ** 
@@ -76,3 +77,6 @@ api project(":seattlesdk")</br>
            private lateinit var container: ViewGroup
            container=findViewById(R.id.xxxx)
            mySDK.showContent(container)
+=======
+sdk tutorial 2
+>>>>>>> b08271c8f95877fae3faea382b69b796adf65aef
