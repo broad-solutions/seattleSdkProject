@@ -1,0 +1,11 @@
+<resources>
+
+    <style name="Theme.WebViewDemo.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.WebViewDemo.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.WebViewDemo.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>
