@@ -63,7 +63,7 @@ api project(":seattlesdk")</br>
        1. 初始化 initSdk("应用包名",token,callback)</br>
        2. 指定显示位置 showContent(view)</br>
 ### token获取
-     通过appkey 和 appsecrect 调用指定接口来获取token</br>
+     通过appkey 和 appsecrect 调用指定接口来获取token
      appkey 和 appsecrect会发放给使用本SDK调用者
 ### SDK调用
        1. 声明SDK 示例如下：
