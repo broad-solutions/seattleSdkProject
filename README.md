@@ -1,10 +1,13 @@
 # [seattleSdkProject](https://github.com/broad-solutions/seattleSdkProject#seattlesdkproject) 说明文档
 
 ## seattleSdk主要功能
-	 本sdk核心功能为：提供统一安全的H5广告页面链接的配置、支持配置多个链接、支持链接的动态切换和间隔设置、支持webviewapi动态开关以满足谷歌的要求。
+	 本sdk核心功能为：提供统一安全的H5广告页面链接的配置、
+  支持配置多个链接、
+  支持链接的动态切换和间隔设置、
+  支持webviewapi动态开关以满足谷歌的要求。
   为合作伙伴提供统一一致透明方便的SDK。
-  
-	 注意：本sdk为Android sdk,仅支持Android应用调用。
+
+  注意：本sdk为Android sdk,仅支持Android应用调用。
 
 ## 集成
 	在您的应用中的build.gradle内引入本sdk
