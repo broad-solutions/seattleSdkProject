@@ -70,7 +70,6 @@ class second : AppCompatActivity(), AnalyticsDelegate by AnalyticsDelegateImpl()
                 jsonArray.getString("msg")
                 val data = jsonArray.getString("data")
                 mySDK.initSdk("com.example.webviewdemo",data,callback)
-                //Log.e("初始化", mySDK.initSdk("com.example.webviewdemo",data,callback).toString())
                 mySDK.showContent(webViewContainer)
             } catch (e: Exception) {
                 e.printStackTrace()

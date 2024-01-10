@@ -1,16 +1,15 @@
 package com.example.seattlesdk
 
-import okhttp3.Callback
+import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.OkHttpClient
-import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
+import java.io.IOException
 
 internal class HttpClient {
 
     private val client = OkHttpClient()
-    private val baseUrl="http://sdkapi.pubadding.com"
+    private val baseUrl="https://sdkapi.pubadding.com"
     // GET请求
     fun get(url: String, token: String, params: Map<String, Any>, callback: Callback) {
         val queryString = StringBuilder()
@@ -25,9 +24,12 @@ internal class HttpClient {
         } else {
             url
         }
+        val headers = Headers.Builder()
+            .add("Authorization", "Bearer $token")
+            .build()
         val request = Request.Builder()
             .url(baseUrl+requestUrl)
-            .header("Authorization", "Bearer $token")
+            .headers(headers)
             .build()
         client.newCall(request).enqueue(callback)
     }

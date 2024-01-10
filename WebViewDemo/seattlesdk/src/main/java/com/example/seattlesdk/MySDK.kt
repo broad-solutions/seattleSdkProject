@@ -132,8 +132,9 @@ class SeattleSdk(private val context: FragmentActivity) {
         container.addView(view)
     }
 
-    @SuppressLint("InvalidWakeLockTag")
+    @SuppressLint("InvalidWakeLockTag", "LongLogTag")
     fun initSdk(packageName: String, token: String, callback: (String) -> Unit) {
+        Log.e("token==========================",token)
         if (context is AnalyticsDelegate) {
             context.registerAnalytics(context)
             GlobalData.updateToken(token)//设置token
