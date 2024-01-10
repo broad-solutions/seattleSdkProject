@@ -1,78 +1,69 @@
-# seattleSdkProject
-### seattleSdk 主要功能
-集成webviewApi展示广告相关内容</br>
-** 
-💡本SDK为Android SDK，仅支持安卓应用的调用
-** 
+# [seattleSdkProject](https://github.com/broad-solutions/seattleSdkProject#seattlesdkproject) 说明文档
 
-### 集成
-api project(":seattlesdk")</br>
-** 支持的SDK最低版本为21 **
-### 使用方法
-使用本SDK时，需要在当前Activity实现 **AnalyticsDelegate**，示例如下
+## seattleSdk主要功能
+  本sdk核心功能为：提供统一安全的H5广告页面链接的配置、
+  支持配置多个链接、
+  支持链接的动态切换和间隔设置、
+  支持webviewapi动态开关以满足谷歌的要求。
+  为合作伙伴提供统一一致透明方便的SDK。
+
+  注意：本sdk为Android sdk,仅支持Android应用调用。
+
+## 集成
+	在您的应用中的build.gradle内引入本sdk
+	引入方式：api project(":seattlesdk")
+ ![1698307215365](https://github.com/broad-solutions/seattleSdkProject/assets/29178778/e6626b07-b958-48d8-8a81-ed281fc7a457)
+
+## 使用方法
+	使用本SDK时，需要在当前Activity实现 **AnalyticsDelegate**，代码示例如下：
+```
+class MainActivity : AppCompatActivity(), AnalyticsDelegate by AnalyticsDelegateImpl() {
+		//your code
+		```
+		```
+}
+```
+关键点为 **AnalyticsDelegate by AnalyticsDelegateImpl()**
+![无标题](https://github.com/broad-solutions/seattleSdkProject/assets/29178778/e01a5efe-6521-4851-b44b-88c845f60971)
 
 
 
-
-
-    class MainActivity : AppCompatActivity(), AnalyticsDelegate by AnalyticsDelegateImpl() {
-
-        private lateinit var appBarConfiguration: AppBarConfiguration
-        private lateinit var binding: ActivityMainBinding
-
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-            binding = ActivityMainBinding.inflate(layoutInflater)
-            setContentView(binding.root)
-        }
-
-        override fun onCreateOptionsMenu(menu: Menu): Boolean {
-            menuInflater.inflate(R.menu.menu_main, menu)
-            return true
-        }
-
-        override fun onOptionsItemSelected(item: MenuItem): Boolean {
-            return when (item.itemId) {
-                R.id.action_settings -> true
-                else -> super.onOptionsItemSelected(item)
-            }
-        }
-
-        override fun onSupportNavigateUp(): Boolean {
-            val navController = findNavController(R.id.FirstFragment)
-            return navController.navigateUp(appBarConfiguration)
-                    || super.onSupportNavigateUp()
-        }
-    }
-
-### 参数说明
-  Context 上下文对象 </br>
-  packageName 当前应用包名</br>
-  token 使用我们提供的接口请求获得token </br>
-  callback 用于处理初始化返回数据的对象   </br>  
-  callback 示例
+## 参数说明
+	调用本sdk需要向sdk传递 4 个参数，分别是：
+		1. Context 上下文对象
+		2. packageName 当前应用包名
+		3. token 使用接口请求获得的token
+		4. callback 用于接收sdk反馈给您的消息
+		
+	 token 获取方法：
+		我们将提供获取token的数据接口，接口为GET请求，调用后返回token，具体如何调用该接口，根据您的实际情况决定。
   
-     private val callback = object : (String) -> Unit {
-         override fun invoke(str: String) {
-             println("Received callback message: $str")
-         }
-     }
-     
-### 方法说明
-   💡本SDK向外暴露两个方法</br>
-       1. 初始化 initSdk("应用包名",token,callback)</br>
-       2. 指定显示位置 showContent(view)</br>
-### token获取
-     通过appkey 和 appsecrect 调用指定接口来获取token</br>
-     appkey 和 appsecrect会发放给使用本SDK调用者
-### SDK调用
-       1. 声明SDK 示例如下：
-          private lateinit var mySdk: SeattleSdk
-          mySdk=SeattleSdk(context)
-       2. 调用获取token接口拿到token
-       3. 初始化SDK如下：
-          mySdk.initSdk("你的应用包名",token,callback)
-        4. 初始化成功后，指定SDK显示的位置，如下：
-           private lateinit var container: ViewGroup
-           container=findViewById(R.id.xxxx)
-           mySDK.showContent(container)
+		token返回数据结构如下:
+  
+		{
+		  code:0,
+		  message:"Success"
+		  data:"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsic2VhdHRsZS1iYWNrZW5kLW9hdXRoIiwic2VhdHRsZS1iYWNrZW5kLWFwaSJdLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiZXhwIjoxNjk4MzE2MTIwLCJhdXRob3JpdGllcyI6WyJBU"
+             }
+       
+       其中 data 即为您需要的token (注意：示例中的数据均为虚假数据，请勿直接使用)
+  ## sdk api说明
+	  本sdk向外曝露两个方法：
+	  1. 初始化： initSdk("应用包名",token,callback)
+	  2. 指定sdk中的webview显示位置： showContent(view)
+## 使用sdk
+	   1. 声明sdk
+	   2. 调用token接口获取token
+	   3. 初始化sdk
+	   4. 在初始化成功后显示sdk中的webview
+	   示例：
+	        private lateinit var mySdk: SeattleSdk
+	        mySdk=SeattleSdk(context)
+	        mySdk.initSdk("yourappName",token,callback)
+	        private lateinit var container: ViewGroup
+	        container=findViewById(R.id.xxxx)
+            mySDK.showContent(container)
+        
+![无标题](https://github.com/broad-solutions/seattleSdkProject/assets/29178778/a5d79702-c923-428d-814e-18aa09c70e31)
+![无标题2](https://github.com/broad-solutions/seattleSdkProject/assets/29178778/c1d57d6c-b589-4ce0-9c72-70f46c176e55)
+
