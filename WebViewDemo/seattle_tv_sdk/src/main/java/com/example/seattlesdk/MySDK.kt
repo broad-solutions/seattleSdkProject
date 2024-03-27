@@ -14,6 +14,7 @@ import android.widget.ProgressBar
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.FragmentActivity
+import com.example.seattle_tv_sdk.R
 import com.example.seattlesdk.GlobalData.errorCountMap
 import com.example.seattlesdk.model.AppConfigDTO
 import com.google.android.gms.ads.MobileAds
